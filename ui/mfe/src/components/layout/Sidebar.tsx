@@ -1,16 +1,16 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Home, Users, Settings, Package } from 'lucide-react';
+import { Link, useLocation } from "react-router-dom";
+import { Home, Users, Settings, Package } from "lucide-react";
 
 export default function Sidebar() {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', icon: Home, label: 'Home' },
-    { path: '/ums', icon: Users, label: 'User Management' },
+    { path: "/", icon: Home, label: "Home" },
+    { path: "/ums", icon: Users, label: "User Management" },
   ];
 
   const isActive = (path: string) => {
-    if (path === '/') {
+    if (path === "/") {
       return location.pathname === path;
     }
     return location.pathname.startsWith(path);
@@ -30,15 +30,15 @@ export default function Sidebar() {
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
-            
+
             return (
               <li key={item.path}>
                 <Link
                   to={item.path}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
                     active
-                      ? 'bg-indigo-600 text-white'
-                      : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                      ? "bg-indigo-600 text-white"
+                      : "text-gray-300 hover:bg-gray-800 hover:text-white"
                   }`}
                 >
                   <Icon className="w-5 h-5" />
@@ -62,4 +62,3 @@ export default function Sidebar() {
     </aside>
   );
 }
-

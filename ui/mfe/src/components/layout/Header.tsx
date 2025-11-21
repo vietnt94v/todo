@@ -1,7 +1,7 @@
-import { Bell, LogOut, User } from 'lucide-react';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { logout } from '../../store/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { Bell, LogOut, User } from "lucide-react";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { logout } from "../../store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
@@ -10,14 +10,14 @@ export default function Header() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
+    navigate("/login");
   };
 
   if (!isAuthenticated) {
     return (
       <header className="bg-white border-b border-gray-200 h-16 px-6 flex items-center justify-end">
         <button
-          onClick={() => navigate('/login')}
+          onClick={() => navigate("/login")}
           className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
         >
           Login
@@ -29,7 +29,7 @@ export default function Header() {
   return (
     <header className="bg-white border-b border-gray-200 h-16 px-6 flex items-center justify-between">
       <div className="flex-1"></div>
-      
+
       <div className="flex items-center gap-4">
         <button className="relative p-2 hover:bg-gray-100 rounded-lg transition">
           <Bell className="w-5 h-5 text-gray-600" />
@@ -41,7 +41,9 @@ export default function Header() {
             <User className="w-5 h-5 text-white" />
           </div>
           <div className="text-sm">
-            <p className="font-medium text-gray-900">{user?.fullName || user?.username}</p>
+            <p className="font-medium text-gray-900">
+              {user?.fullName || user?.username}
+            </p>
             <p className="text-gray-500">{user?.roles}</p>
           </div>
         </div>
@@ -57,4 +59,3 @@ export default function Header() {
     </header>
   );
 }
-

@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { userApi } from '../services/userApi';
-import { User } from '../types/User';
-import { UserPlus, Search, Edit, Trash2, Eye } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { userApi } from "../services/userApi";
+import { User } from "../types/User";
+import { UserPlus, Search, Edit, Trash2, Eye } from "lucide-react";
 
 export default function UserManagement() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     loadUsers();
@@ -18,29 +18,30 @@ export default function UserManagement() {
       setLoading(true);
       const data = await userApi.getAll();
       setUsers(data);
-      setError('');
+      setError("");
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Failed to load users');
+      setError(err.response?.data?.error || "Failed to load users");
     } finally {
       setLoading(false);
     }
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this user?')) return;
-    
+    if (!confirm("Are you sure you want to delete this user?")) return;
+
     try {
       await userApi.delete(id);
       loadUsers();
     } catch (err: any) {
-      alert(err.response?.data?.error || 'Failed to delete user');
+      alert(err.response?.data?.error || "Failed to delete user");
     }
   };
 
-  const filteredUsers = users.filter(user =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (user.fullName?.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredUsers = users.filter(
+    (user) =>
+      user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.fullName?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -48,8 +49,12 @@ export default function UserManagement() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
-            <p className="text-gray-600 mt-1">Manage user accounts and permissions</p>
+            <h1 className="text-3xl font-bold text-gray-900">
+              User Management
+            </h1>
+            <p className="text-gray-600 mt-1">
+              Manage user accounts and permissions
+            </p>
           </div>
           <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
             <UserPlus className="w-5 h-5" />
@@ -78,7 +83,9 @@ export default function UserManagement() {
           </div>
 
           {loading ? (
-            <div className="p-8 text-center text-gray-500">Loading users...</div>
+            <div className="p-8 text-center text-gray-500">
+              Loading users...
+            </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -107,37 +114,46 @@ export default function UserManagement() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {filteredUsers.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="px-6 py-8 text-center text-gray-500">
-                        {searchTerm ? 'No users found matching your search' : 'No users found'}
+                      <td
+                        colSpan={6}
+                        className="px-6 py-8 text-center text-gray-500"
+                      >
+                        {searchTerm
+                          ? "No users found matching your search"
+                          : "No users found"}
                       </td>
                     </tr>
                   ) : (
                     filteredUsers.map((user) => (
                       <tr key={user.id} className="hover:bg-gray-50 transition">
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="font-medium text-gray-900">{user.username}</div>
+                          <div className="font-medium text-gray-900">
+                            {user.username}
+                          </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-gray-900">{user.email}</div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-gray-900">{user.fullName || '-'}</div>
+                          <div className="text-gray-900">
+                            {user.fullName || "-"}
+                          </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                            {user.roles || 'No role'}
+                            {user.roles || "No role"}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span
                             className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                              user.statusName === 'active'
-                                ? 'bg-green-100 text-green-800'
-                                : user.statusName === 'inactive'
-                                ? 'bg-gray-100 text-gray-800'
-                                : user.statusName === 'locked'
-                                ? 'bg-red-100 text-red-800'
-                                : 'bg-yellow-100 text-yellow-800'
+                              user.statusName === "active"
+                                ? "bg-green-100 text-green-800"
+                                : user.statusName === "inactive"
+                                  ? "bg-gray-100 text-gray-800"
+                                  : user.statusName === "locked"
+                                    ? "bg-red-100 text-red-800"
+                                    : "bg-yellow-100 text-yellow-800"
                             }`}
                           >
                             {user.statusName}
@@ -177,7 +193,8 @@ export default function UserManagement() {
           <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-700">
-                Showing <span className="font-medium">{filteredUsers.length}</span> of{' '}
+                Showing{" "}
+                <span className="font-medium">{filteredUsers.length}</span> of{" "}
                 <span className="font-medium">{users.length}</span> users
               </div>
             </div>
@@ -187,4 +204,3 @@ export default function UserManagement() {
     </div>
   );
 }
-

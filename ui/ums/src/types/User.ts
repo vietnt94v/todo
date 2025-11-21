@@ -25,4 +25,3 @@ export interface UpdateUserRequest {
   fullName?: string;
   statusId: number;
 }
-

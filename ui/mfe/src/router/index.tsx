@@ -1,15 +1,15 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
-import Layout from '../components/layout/Layout';
-import ProtectedRoute from './ProtectedRoute';
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import { lazy, Suspense } from 'react';
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import Layout from "../components/layout/Layout";
+import ProtectedRoute from "./ProtectedRoute";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import { lazy, Suspense } from "react";
 
-const UmsApp = lazy(() => import('ums/App'));
+const UmsApp = lazy(() => import("ums/App"));
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
@@ -21,11 +21,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'login',
+        path: "login",
         element: <Login />,
       },
       {
-        path: 'ums',
+        path: "ums",
         element: (
           <ProtectedRoute>
             <Suspense fallback={<div className="p-8">Loading UMS...</div>}>
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'settings',
+        path: "settings",
         element: (
           <ProtectedRoute>
             <div className="p-8">
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '*',
+        path: "*",
         element: <Navigate to="/" replace />,
       },
     ],
@@ -54,4 +54,3 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
-

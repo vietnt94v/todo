@@ -1,5 +1,5 @@
-import { Navigate, useLocation } from 'react-router-dom';
-import { useAppSelector } from '../store/hooks';
+import { Navigate, useLocation } from "react-router-dom";
+import { useAppSelector } from "../store/hooks";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -15,4 +15,3 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   return <>{children}</>;
 }
-
