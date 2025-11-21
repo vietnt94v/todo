@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Search, X } from 'lucide-react'
-import { Button } from '../Button'
-import { Input } from '../Input'
+import { Button, Input } from '@/components'
 
 export interface TableSearchProps {
   placeholder?: string

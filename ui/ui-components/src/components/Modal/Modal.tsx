@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Portal } from '../Portal'
+import { Portal } from '@/components'
 
 export interface ModalProps {
   isOpen: boolean

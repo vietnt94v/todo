@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Modal } from '../components/Modal'
-import { Button } from '../components/Button'
+import { Modal, Button } from '@/components'
 
 export const ModalDemo: React.FC = () => {
   const [isBasicOpen, setIsBasicOpen] = useState(false)

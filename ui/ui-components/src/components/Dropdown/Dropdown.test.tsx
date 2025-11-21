@@ -165,7 +165,7 @@ describe('Dropdown', () => {
     const trigger = screen.getByText('Open Menu')
     fireEvent.click(trigger)
 
-    let menu = screen.getByText('Edit').parentElement
+    let menu = screen.getByText('Edit').parentElement?.parentElement
     expect(menu).toHaveClass('top-full', 'left-0')
 
     fireEvent.click(trigger)
@@ -181,7 +181,7 @@ describe('Dropdown', () => {
 
     fireEvent.click(trigger)
 
-    menu = screen.getByText('Edit').parentElement
+    menu = screen.getByText('Edit').parentElement?.parentElement
     expect(menu).toHaveClass('bottom-full', 'right-0')
   })
 

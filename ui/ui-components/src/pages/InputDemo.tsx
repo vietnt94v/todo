@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Input } from '../components/Input'
+import { Input } from '@/components'
 import { ArrowLeft } from 'lucide-react'
 
 export const InputDemo: React.FC = () => {

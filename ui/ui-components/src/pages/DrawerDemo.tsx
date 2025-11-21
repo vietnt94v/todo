@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Drawer } from '../components/Drawer'
-import { Button } from '../components/Button'
+import { Drawer, Button } from '@/components'
 
 export const DrawerDemo: React.FC = () => {
   const [isRightOpen, setIsRightOpen] = useState(false)

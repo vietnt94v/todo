@@ -10,6 +10,14 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+      '@/components': resolve(__dirname, './src/components'),
+      '@/pages': resolve(__dirname, './src/pages'),
+      '@/routes': resolve(__dirname, './src/routes'),
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

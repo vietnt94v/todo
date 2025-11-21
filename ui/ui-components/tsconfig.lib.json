@@ -9,6 +9,13 @@
     "moduleResolution": "bundler",
     "moduleDetection": "force",
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components": ["src/components"],
+      "@/pages": ["src/pages"],
+      "@/routes": ["src/routes"]
+    },
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

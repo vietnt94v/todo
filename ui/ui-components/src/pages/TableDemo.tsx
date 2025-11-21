@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Table } from '../components/Table'
-import type { TableConfig } from '../components/Table/types'
+import { Table, type TableConfig } from '@/components'
 import { ArrowLeft, Edit, Trash2 } from 'lucide-react'
 
 interface User {

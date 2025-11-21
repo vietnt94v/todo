@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Dropdown, type DropdownItem } from '../components/Dropdown'
-import { Button } from '../components/Button'
+import { Dropdown, type DropdownItem, Button } from '@/components'
 
 export const DropdownDemo: React.FC = () => {
   const [selectedAction, setSelectedAction] = useState<string>('')
