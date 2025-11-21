@@ -1,0 +1,17 @@
+build component similar https://www.chakra-ui.com/ style
+- Button: size: sm md lg
+- Input: should have same size, padding, border, height with button level
+- Table: heavy component
+ + every depend on tableConfig
+ + table title
+ + search master input: input + button x(to clear search) + button search(icon search)
+ + filter
+ + table to show data:
+  - show all pair fields and value
+  - first column is "Action": click to show one dropdown(icon 3 dots) that include option: update | delete, ... etc
+    it depend on table config what I want to show in this dropdown
+  - bottom show paging: in left:: Item per page, dropdown [25,50,75,100] - in right: page current number
+- create test, use jest for every component
+
+Make index page can click link to each component
+ - Component name -> /{component-name} show

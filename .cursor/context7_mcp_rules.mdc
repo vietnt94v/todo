@@ -1,0 +1,33 @@
+---
+alwaysApply: true
+---
+## Quick Reference / Tham khảo nhanh
+
+### Mandatory Sequence / Trình tự bắt buộc
+```
+resolve-library-id → get-library-docs
+```
+
+### Exception / Ngoại lệ
+User provides exact ID format: `/org/project` or `/org/project/version`
+
+### Selection Criteria Priority / Ưu tiên tiêu chí chọn
+1. Name similarity / Độ tương đồng tên
+2. Benchmark score / Điểm benchmark
+3. Documentation coverage / Phạm vi tài liệu
+4. Source reputation / Uy tín nguồn
+5. Description relevance / Độ liên quan mô tả
+
+### Common Topics / Topic phổ biến
+- hooks
+- routing
+- authentication
+- state management
+- API
+- components
+- configuration
+- deployment
+- testing
+- performance
+- security
+

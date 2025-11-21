@@ -1,0 +1,15 @@
+In mfe app, make sure responsive
+- router:
+ + "/" home
+ + "/ums" User management syste,
+- have 2 type screen: table screen and 
+- build the structor layout:
+ + Header: Login button or circle aventer user logged in, icon bell and number to show notification
+ + Left sidebar: main Logo in top, pair(icon-text); body include link to remote all , exp: Ums -> "/ums", footer is setting,
+- login page:
+ + username/password button login, if success redirect to the previous url user fill before, if not -> home "/"
+ + save token in cookie
+- page in mfe: need check token login via cookie before access
+- ums page ("/ums")
+ + table to show all users
+
