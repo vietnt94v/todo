@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, useRoutes } from 'react-router-dom'
-import { routes } from '@/routes'
+import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
+import { routes } from '@/routes';
 
 function AppRoutes() {
-  return useRoutes(routes)
+  return useRoutes(routes);
 }
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <Router>
       <AppRoutes />
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

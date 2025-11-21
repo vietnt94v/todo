@@ -1,18 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Button } from '@/components'
-import { ArrowLeft } from 'lucide-react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components';
+import { ArrowLeft } from 'lucide-react';
 
 export const ButtonDemo: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <Link to="/" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-8">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-8"
+        >
           <ArrowLeft size={20} />
           Back to Home
         </Link>
 
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Button Component</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-8">
+          Button Component
+        </h1>
 
         <div className="space-y-8">
           <section className="bg-white p-6 rounded-lg shadow">
@@ -49,7 +54,9 @@ export const ButtonDemo: React.FC = () => {
                 <div key={size} className="space-y-2">
                   <h3 className="text-lg font-medium capitalize">{size}</h3>
                   <div className="flex flex-wrap gap-4">
-                    {(['primary', 'secondary', 'outline', 'ghost'] as const).map((variant) => (
+                    {(
+                      ['primary', 'secondary', 'outline', 'ghost'] as const
+                    ).map((variant) => (
                       <Button key={variant} size={size} variant={variant}>
                         {variant}
                       </Button>
@@ -62,13 +69,10 @@ export const ButtonDemo: React.FC = () => {
 
           <section className="bg-white p-6 rounded-lg shadow">
             <h2 className="text-2xl font-semibold mb-4">Interactive Example</h2>
-            <Button onClick={() => alert('Button clicked!')}>
-              Click Me
-            </Button>
+            <Button onClick={() => alert('Button clicked!')}>Click Me</Button>
           </section>
         </div>
       </div>
     </div>
-  )
-}
-
+  );
+};

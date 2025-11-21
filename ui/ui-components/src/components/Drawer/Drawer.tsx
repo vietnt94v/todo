@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
-import { Portal } from '@/components'
+import React, { useEffect } from 'react';
+import { Portal } from '@/components';
 
 export interface DrawerProps {
-  isOpen: boolean
-  onClose: () => void
-  title?: string
-  children: React.ReactNode
-  position?: 'left' | 'right' | 'top' | 'bottom'
-  size?: 'sm' | 'md' | 'lg'
-  showCloseButton?: boolean
-  closeOnOverlayClick?: boolean
-  footer?: React.ReactNode
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  children: React.ReactNode;
+  position?: 'left' | 'right' | 'top' | 'bottom';
+  size?: 'sm' | 'md' | 'lg';
+  showCloseButton?: boolean;
+  closeOnOverlayClick?: boolean;
+  footer?: React.ReactNode;
 }
 
 const positionClasses = {
@@ -18,7 +18,7 @@ const positionClasses = {
   right: 'right-0 top-0 h-full',
   top: 'top-0 left-0 w-full',
   bottom: 'bottom-0 left-0 w-full',
-}
+};
 
 const sizeClasses = {
   left: {
@@ -41,7 +41,7 @@ const sizeClasses = {
     md: 'h-64',
     lg: 'h-80',
   },
-}
+};
 
 const translateClasses = {
   left: {
@@ -60,7 +60,7 @@ const translateClasses = {
     open: 'translate-y-0',
     closed: 'translate-y-full',
   },
-}
+};
 
 export const Drawer: React.FC<DrawerProps> = ({
   isOpen,
@@ -75,32 +75,32 @@ export const Drawer: React.FC<DrawerProps> = ({
 }) => {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = 'unset';
     }
 
     return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen])
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
-        onClose()
+        onClose();
       }
-    }
+    };
 
-    document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [isOpen, onClose])
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen, onClose]);
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (closeOnOverlayClick && e.target === e.currentTarget) {
-      onClose()
+      onClose();
     }
-  }
+  };
 
   return (
     <Portal>
@@ -115,13 +115,17 @@ export const Drawer: React.FC<DrawerProps> = ({
         className={`fixed z-50 bg-white shadow-xl transform transition-transform duration-300 ${
           positionClasses[position]
         } ${sizeClasses[position][size]} ${
-          isOpen ? translateClasses[position].open : translateClasses[position].closed
+          isOpen
+            ? translateClasses[position].open
+            : translateClasses[position].closed
         }`}
       >
         <div className="flex flex-col h-full">
           {(title || showCloseButton) && (
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-              {title && <h3 className="text-lg font-semibold text-gray-900">{title}</h3>}
+              {title && (
+                <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+              )}
               {showCloseButton && (
                 <button
                   onClick={onClose}
@@ -144,9 +148,7 @@ export const Drawer: React.FC<DrawerProps> = ({
             </div>
           )}
 
-          <div className="flex-1 px-6 py-4 overflow-y-auto">
-            {children}
-          </div>
+          <div className="flex-1 px-6 py-4 overflow-y-auto">{children}</div>
 
           {footer && (
             <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
@@ -156,8 +158,7 @@ export const Drawer: React.FC<DrawerProps> = ({
         </div>
       </div>
     </Portal>
-  )
-}
+  );
+};
 
-Drawer.displayName = 'Drawer'
-
+Drawer.displayName = 'Drawer';

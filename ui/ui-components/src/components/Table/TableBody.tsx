@@ -1,17 +1,21 @@
-import React from 'react'
-import { ActionDropdown } from './ActionDropdown'
-import type { ColumnDefinition, ActionOption } from './types'
+import React from 'react';
+import { ActionDropdown } from './ActionDropdown';
+import type { ColumnDefinition, ActionOption } from './types';
 
 export interface TableBodyProps {
-  columns: ColumnDefinition[]
-  data: any[]
-  actions?: ActionOption[]
+  columns: ColumnDefinition[];
+  data: any[];
+  actions?: ActionOption[];
 }
 
-export const TableBody: React.FC<TableBodyProps> = ({ columns, data, actions }) => {
+export const TableBody: React.FC<TableBodyProps> = ({
+  columns,
+  data,
+  actions,
+}) => {
   const getValue = (row: any, field: string) => {
-    return field.split('.').reduce((obj, key) => obj?.[key], row)
-  }
+    return field.split('.').reduce((obj, key) => obj?.[key], row);
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -52,7 +56,7 @@ export const TableBody: React.FC<TableBodyProps> = ({ columns, data, actions }) 
                   </td>
                 )}
                 {columns.map((column) => {
-                  const value = getValue(row, column.field)
+                  const value = getValue(row, column.field);
                   return (
                     <td
                       key={column.field}
@@ -60,7 +64,7 @@ export const TableBody: React.FC<TableBodyProps> = ({ columns, data, actions }) 
                     >
                       {column.render ? column.render(value, row) : value}
                     </td>
-                  )
+                  );
                 })}
               </tr>
             ))
@@ -68,6 +72,5 @@ export const TableBody: React.FC<TableBodyProps> = ({ columns, data, actions }) 
         </tbody>
       </table>
     </div>
-  )
-}
-
+  );
+};

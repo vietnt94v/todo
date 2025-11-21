@@ -1,4 +1,4 @@
-import type { RouteObject } from 'react-router-dom'
+import type { RouteObject } from 'react-router-dom';
 import {
   Home,
   ButtonDemo,
@@ -6,37 +6,36 @@ import {
   TableDemo,
   ModalDemo,
   DrawerDemo,
-  DropdownDemo
-} from '@/pages'
+  DropdownDemo,
+} from '@/pages';
 
 export const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Home />
+    element: <Home />,
   },
   {
     path: '/button',
-    element: <ButtonDemo />
+    element: <ButtonDemo />,
   },
   {
     path: '/input',
-    element: <InputDemo />
+    element: <InputDemo />,
   },
   {
     path: '/table',
-    element: <TableDemo />
+    element: <TableDemo />,
   },
   {
     path: '/modal',
-    element: <ModalDemo />
+    element: <ModalDemo />,
   },
   {
     path: '/drawer',
-    element: <DrawerDemo />
+    element: <DrawerDemo />,
   },
   {
     path: '/dropdown',
-    element: <DropdownDemo />
-  }
-]
-
+    element: <DropdownDemo />,
+  },
+];

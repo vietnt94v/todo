@@ -1,13 +1,13 @@
-import React from 'react'
-import type { FilterConfig } from './types'
+import React from 'react';
+import type { FilterConfig } from './types';
 
 export interface TableFilterProps {
-  config?: FilterConfig
+  config?: FilterConfig;
 }
 
 export const TableFilter: React.FC<TableFilterProps> = ({ config }) => {
   if (!config || !config.customFilters) {
-    return null
+    return null;
   }
 
   return (
@@ -15,6 +15,5 @@ export const TableFilter: React.FC<TableFilterProps> = ({ config }) => {
       <h3 className="text-sm font-semibold text-gray-700 mb-2">Filters</h3>
       {config.customFilters}
     </div>
-  )
-}
-
+  );
+};

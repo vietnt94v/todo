@@ -1,14 +1,14 @@
-import React from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import React from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface TablePaginationProps {
-  currentPage: number
-  totalPages: number
-  itemsPerPage: number
-  itemsPerPageOptions: number[]
-  onPageChange: (page: number) => void
-  onItemsPerPageChange: (itemsPerPage: number) => void
-  totalItems: number
+  currentPage: number;
+  totalPages: number;
+  itemsPerPage: number;
+  itemsPerPageOptions: number[];
+  onPageChange: (page: number) => void;
+  onItemsPerPageChange: (itemsPerPage: number) => void;
+  totalItems: number;
 }
 
 export const TablePagination: React.FC<TablePaginationProps> = ({
@@ -20,8 +20,8 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
   onItemsPerPageChange,
   totalItems,
 }) => {
-  const startItem = (currentPage - 1) * itemsPerPage + 1
-  const endItem = Math.min(currentPage * itemsPerPage, totalItems)
+  const startItem = (currentPage - 1) * itemsPerPage + 1;
+  const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
     <div className="flex items-center justify-between mt-4 px-4 py-3 border-t border-gray-200">
@@ -52,7 +52,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
         >
           <ChevronLeft size={20} />
         </button>
-        
+
         <span className="text-sm text-gray-700">
           Page {currentPage} of {totalPages}
         </span>
@@ -67,6 +67,5 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
         </button>
       </div>
     </div>
-  )
-}
-
+  );
+};

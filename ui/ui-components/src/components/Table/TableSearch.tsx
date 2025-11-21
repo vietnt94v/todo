@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
-import { Search, X } from 'lucide-react'
-import { Button, Input } from '@/components'
+import React, { useState } from 'react';
+import { Search, X } from 'lucide-react';
+import { Button, Input } from '@/components';
 
 export interface TableSearchProps {
-  placeholder?: string
-  onSearch: (searchTerm: string) => void
+  placeholder?: string;
+  onSearch: (searchTerm: string) => void;
 }
 
-export const TableSearch: React.FC<TableSearchProps> = ({ 
-  placeholder = 'Search...', 
-  onSearch 
+export const TableSearch: React.FC<TableSearchProps> = ({
+  placeholder = 'Search...',
+  onSearch,
 }) => {
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = () => {
-    onSearch(searchTerm)
-  }
+    onSearch(searchTerm);
+  };
 
   const handleClear = () => {
-    setSearchTerm('')
-    onSearch('')
-  }
+    setSearchTerm('');
+    onSearch('');
+  };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      handleSearch()
+      handleSearch();
     }
-  }
+  };
 
   return (
     <div className="flex gap-2 mb-4">
@@ -51,6 +51,5 @@ export const TableSearch: React.FC<TableSearchProps> = ({
         <Search size={20} />
       </Button>
     </div>
-  )
-}
-
+  );
+};

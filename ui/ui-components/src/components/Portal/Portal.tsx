@@ -1,36 +1,38 @@
-import { useEffect, useState } from 'react'
-import { createPortal } from 'react-dom'
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 export interface PortalProps {
-  children: React.ReactNode
-  containerId?: string
+  children: React.ReactNode;
+  containerId?: string;
 }
 
-export const Portal: React.FC<PortalProps> = ({ children, containerId = 'portal-root' }) => {
-  const [container, setContainer] = useState<HTMLElement | null>(null)
+export const Portal: React.FC<PortalProps> = ({
+  children,
+  containerId = 'portal-root',
+}) => {
+  const [container, setContainer] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    let portalContainer = document.getElementById(containerId)
+    let portalContainer = document.getElementById(containerId);
 
     if (!portalContainer) {
-      portalContainer = document.createElement('div')
-      portalContainer.id = containerId
-      document.body.appendChild(portalContainer)
+      portalContainer = document.createElement('div');
+      portalContainer.id = containerId;
+      document.body.appendChild(portalContainer);
     }
 
-    setContainer(portalContainer)
+    setContainer(portalContainer);
 
     return () => {
       if (portalContainer && portalContainer.childNodes.length === 0) {
-        portalContainer.remove()
+        portalContainer.remove();
       }
-    }
-  }, [containerId])
+    };
+  }, [containerId]);
 
-  if (!container) return null
+  if (!container) return null;
 
-  return createPortal(children, container)
-}
+  return createPortal(children, container);
+};
 
-Portal.displayName = 'Portal'
-
+Portal.displayName = 'Portal';

@@ -14,34 +14,35 @@ A modern, reusable UI component library built with React, TypeScript, and Tailwi
 ## Components
 
 ### Button
+
 A versatile button component with multiple sizes and variants.
 
 **Sizes:** `sm`, `md`, `lg`  
 **Variants:** `primary`, `secondary`, `outline`, `ghost`
 
 ```tsx
-import { Button } from 'ui-components'
+import { Button } from 'ui-components';
 
-<Button size="md" variant="primary">Click me</Button>
+<Button size="md" variant="primary">
+  Click me
+</Button>;
 ```
 
 ### Input
+
 A flexible input component with validation support.
 
 **Sizes:** `sm`, `md`, `lg` (matching button heights)  
 **Types:** `text`, `password`, `email`, `number`
 
 ```tsx
-import { Input } from 'ui-components'
+import { Input } from 'ui-components';
 
-<Input 
-  label="Username"
-  error={hasError}
-  errorMessage="Username is required"
-/>
+<Input label="Username" error={hasError} errorMessage="Username is required" />;
 ```
 
 ### Table
+
 An advanced table component with pagination, search, and actions.
 
 **Modes:** Client-side and Server-side pagination/filtering
@@ -98,8 +99,8 @@ pnpm test:coverage
 After building the library, you can use it in other projects:
 
 ```tsx
-import { Button, Input, Table } from 'ui-components'
-import 'ui-components/styles.css'
+import { Button, Input, Table } from 'ui-components';
+import 'ui-components/styles.css';
 ```
 
 ## License

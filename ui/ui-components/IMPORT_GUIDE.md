@@ -29,40 +29,35 @@ Dự án này sử dụng path aliases với `@` để có imports sạch hơn v
 
 ```typescript
 // ✅ Good - Import from @/components
-import { Button, Modal, Dropdown } from '@/components'
+import { Button, Modal, Dropdown } from '@/components';
 
 // ✅ Good - Import with types
-import { Button, type ButtonProps } from '@/components'
+import { Button, type ButtonProps } from '@/components';
 
 // ✅ Good - Multiple components
-import { 
-  Table, 
-  Modal, 
-  Drawer, 
-  type TableConfig 
-} from '@/components'
+import { Table, Modal, Drawer, type TableConfig } from '@/components';
 ```
 
 #### 2. Import Pages / Import các trang
 
 ```typescript
 // ✅ Good - Import from @/pages
-import { Home, ButtonDemo } from '@/pages'
+import { Home, ButtonDemo } from '@/pages';
 ```
 
 #### 3. Import Routes / Import routes
 
 ```typescript
 // ✅ Good - Import from @/routes
-import { routes } from '@/routes'
+import { routes } from '@/routes';
 ```
 
 #### 4. Import from src / Import từ src
 
 ```typescript
 // ✅ Good - Any file in src
-import { someUtil } from '@/utils/helper'
-import { API_URL } from '@/constants'
+import { someUtil } from '@/utils/helper';
+import { API_URL } from '@/constants';
 ```
 
 ---
@@ -71,15 +66,15 @@ import { API_URL } from '@/constants'
 
 ```typescript
 // ❌ Bad - Relative paths
-import { Button } from '../components/Button'
-import { Modal } from '../../components/Modal/Modal'
+import { Button } from '../components/Button';
+import { Modal } from '../../components/Modal/Modal';
 
 // ❌ Bad - Direct component file import
-import { Button } from '@/components/Button/Button'
+import { Button } from '@/components/Button/Button';
 
 // ❌ Bad - Mixed styles
-import { Button } from '@/components'
-import { Modal } from '../components/Modal'
+import { Button } from '@/components';
+import { Modal } from '../components/Modal';
 ```
 
 ---
@@ -91,13 +86,15 @@ The `@/components` index is organized by category:
 Index `@/components` được tổ chức theo danh mục:
 
 ### 1. Basic Form Components / Components Form cơ bản
+
 ```typescript
-import { Button, Input } from '@/components'
+import { Button, Input } from '@/components';
 ```
 
 ### 2. Table Components / Components Table
+
 ```typescript
-import { 
+import {
   Table,
   TableTitle,
   TableSearch,
@@ -105,18 +102,20 @@ import {
   TableBody,
   TablePagination,
   ActionDropdown,
-  type TableConfig
-} from '@/components'
+  type TableConfig,
+} from '@/components';
 ```
 
 ### 3. Overlay Components / Components Overlay
+
 ```typescript
-import { Modal, Drawer, Dropdown } from '@/components'
+import { Modal, Drawer, Dropdown } from '@/components';
 ```
 
 ### 4. Utility Components / Components Tiện ích
+
 ```typescript
-import { Portal } from '@/components'
+import { Portal } from '@/components';
 ```
 
 ---
@@ -207,11 +206,11 @@ Luôn sử dụng từ khóa `type` cho type-only imports:
 
 ```typescript
 // ✅ Good - Type-only import
-import { Button, type ButtonProps } from '@/components'
-import type { TableConfig } from '@/components'
+import { Button, type ButtonProps } from '@/components';
+import type { TableConfig } from '@/components';
 
 // ❌ Bad - Mixed import (may cause issues with verbatimModuleSyntax)
-import { ButtonProps } from '@/components'
+import { ButtonProps } from '@/components';
 ```
 
 ---
@@ -221,14 +220,16 @@ import { ButtonProps } from '@/components'
 ### 1. Cleaner Code / Code sạch hơn
 
 **Before / Trước:**
+
 ```typescript
-import { Button } from '../../../components/Button'
-import { Modal } from '../../components/Modal/Modal'
+import { Button } from '../../../components/Button';
+import { Modal } from '../../components/Modal/Modal';
 ```
 
 **After / Sau:**
+
 ```typescript
-import { Button, Modal } from '@/components'
+import { Button, Modal } from '@/components';
 ```
 
 ### 2. Easier Refactoring / Refactor dễ hơn
@@ -283,7 +284,7 @@ import { Button, Modal } from '@/components'
 **File:** `vite.config.ts`
 
 ```typescript
-import { resolve } from 'path'
+import { resolve } from 'path';
 
 export default defineConfig({
   resolve: {
@@ -294,7 +295,7 @@ export default defineConfig({
       '@/routes': resolve(__dirname, './src/routes'),
     },
   },
-})
+});
 ```
 
 ---
@@ -315,7 +316,7 @@ Nếu cần thêm alias mới:
       "@/components": ["src/components"],
       "@/pages": ["src/pages"],
       "@/routes": ["src/routes"],
-      "@/utils": ["src/utils"]  // ⭐ New alias
+      "@/utils": ["src/utils"] // ⭐ New alias
     }
   }
 }
@@ -331,16 +332,16 @@ export default defineConfig({
       '@/components': resolve(__dirname, './src/components'),
       '@/pages': resolve(__dirname, './src/pages'),
       '@/routes': resolve(__dirname, './src/routes'),
-      '@/utils': resolve(__dirname, './src/utils'),  // ⭐ New alias
+      '@/utils': resolve(__dirname, './src/utils'), // ⭐ New alias
     },
   },
-})
+});
 ```
 
 ### Step 3: Use the new alias
 
 ```typescript
-import { formatDate } from '@/utils'
+import { formatDate } from '@/utils';
 ```
 
 ---
@@ -355,9 +356,9 @@ import { formatDate } from '@/utils'
 2. Clear build cache: `rm -rf node_modules/.vite`
 3. Rebuild: `npm run build`
 
-1. Khởi động lại TypeScript server trong IDE
-2. Xóa build cache: `rm -rf node_modules/.vite`
-3. Build lại: `npm run build`
+4. Khởi động lại TypeScript server trong IDE
+5. Xóa build cache: `rm -rf node_modules/.vite`
+6. Build lại: `npm run build`
 
 ### Issue: Types not working / Vấn đề: Types không hoạt động
 
@@ -369,10 +370,10 @@ Make sure you're using `type` keyword for type imports:
 
 ```typescript
 // ✅ Correct
-import { Button, type ButtonProps } from '@/components'
+import { Button, type ButtonProps } from '@/components';
 
 // ❌ Wrong
-import { ButtonProps } from '@/components'
+import { ButtonProps } from '@/components';
 ```
 
 ### Issue: Build fails / Vấn đề: Build thất bại
@@ -396,14 +397,14 @@ Kiểm tra xem cả `tsconfig.app.json` và `vite.config.ts` đều có cùng al
 7. ❌ Don't import from component files directly
 8. ❌ Don't create circular dependencies
 
-1. ✅ Luôn dùng `@/components` cho component imports
-2. ✅ Dùng từ khóa `type` cho type-only imports
-3. ✅ Nhóm các imports liên quan lại
-4. ✅ Giữ imports ở đầu file
-5. ✅ Dùng destructuring cho nhiều imports
-6. ❌ Không trộn lẫn relative và alias imports
-7. ❌ Không import trực tiếp từ component files
-8. ❌ Không tạo circular dependencies
+9. ✅ Luôn dùng `@/components` cho component imports
+10. ✅ Dùng từ khóa `type` cho type-only imports
+11. ✅ Nhóm các imports liên quan lại
+12. ✅ Giữ imports ở đầu file
+13. ✅ Dùng destructuring cho nhiều imports
+14. ❌ Không trộn lẫn relative và alias imports
+15. ❌ Không import trực tiếp từ component files
+16. ❌ Không tạo circular dependencies
 
 ---
 
@@ -425,12 +426,12 @@ Khi migrate code hiện có:
 
 ## Quick Reference / Tham khảo nhanh
 
-| Old Style | New Style |
-|-----------|-----------|
-| `import { Button } from '../components/Button'` | `import { Button } from '@/components'` |
-| `import { Home } from '../pages/Home'` | `import { Home } from '@/pages'` |
-| `import { routes } from '../routes'` | `import { routes } from '@/routes'` |
-| `import { ButtonProps } from '@/components'` | `import { type ButtonProps } from '@/components'` |
+| Old Style                                       | New Style                                         |
+| ----------------------------------------------- | ------------------------------------------------- |
+| `import { Button } from '../components/Button'` | `import { Button } from '@/components'`           |
+| `import { Home } from '../pages/Home'`          | `import { Home } from '@/pages'`                  |
+| `import { routes } from '../routes'`            | `import { routes } from '@/routes'`               |
+| `import { ButtonProps } from '@/components'`    | `import { type ButtonProps } from '@/components'` |
 
 ---
 
@@ -455,4 +456,3 @@ Khi migrate code hiện có:
 ✅ Sử dụng từ khóa `type` cho type-only imports
 
 ✅ Giữ imports được tổ chức và nhất quán
-

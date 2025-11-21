@@ -3,43 +3,52 @@
 ## ✅ Fixed Issues / Đã sửa lỗi
 
 ### Tailwind CSS v4 PostCSS Error
+
 **Problem:** Tailwind CSS v4 requires `@tailwindcss/postcss` instead of using `tailwindcss` directly as a PostCSS plugin.
 
 **Solution:**
+
 ```bash
 pnpm add -D @tailwindcss/postcss
 ```
 
 Updated `postcss.config.js`:
+
 ```js
 export default {
   plugins: {
     '@tailwindcss/postcss': {},
     autoprefixer: {},
   },
-}
+};
 ```
 
 ## 🚀 Quick Start
 
 ### Development (Demo App)
+
 ```bash
 pnpm dev
 ```
+
 Opens demo app at `http://localhost:5173/`
 
 ### Build Library
+
 ```bash
 pnpm build:lib
 ```
+
 Outputs to `dist/` folder
 
 ### Run Tests
+
 ```bash
 pnpm test
 ```
 
 ### Test Coverage
+
 ```bash
 pnpm test:coverage
 ```
@@ -87,17 +96,20 @@ dist/                # Build output
 ## 🎯 Component Features
 
 ### Button
+
 - Sizes: sm (h-8), md (h-10), lg (h-12)
 - Variants: primary, secondary, outline, ghost
 - States: default, hover, active, disabled
 
 ### Input
+
 - Sizes matching Button heights
 - Label support
 - Error state with message
 - All input types supported
 
 ### Table
+
 - Client-side pagination/search/filter
 - Server-side mode with callbacks
 - Configurable actions dropdown
@@ -147,5 +159,4 @@ import type { TableConfig } from 'ui-components'
 ✅ TypeScript declarations  
 ✅ Demo application with routing  
 ✅ All components with tests  
-✅ README documentation  
-
+✅ README documentation

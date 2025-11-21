@@ -5,6 +5,7 @@
 A flexible modal dialog component with customizable sizes and behaviors.
 
 ### Features
+
 - Multiple sizes: sm, md, lg, xl
 - Close on overlay click (configurable)
 - Close on Escape key press
@@ -16,7 +17,7 @@ A flexible modal dialog component with customizable sizes and behaviors.
 ### Usage
 
 ```tsx
-import { Modal } from './components/Modal'
+import { Modal } from './components/Modal';
 
 <Modal
   isOpen={isOpen}
@@ -28,21 +29,21 @@ import { Modal } from './components/Modal'
   footer={<div>Footer content</div>}
 >
   <p>Modal content goes here</p>
-</Modal>
+</Modal>;
 ```
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| isOpen | boolean | required | Controls modal visibility |
-| onClose | () => void | required | Callback when modal closes |
-| title | string | optional | Modal title |
-| children | ReactNode | required | Modal content |
-| size | 'sm' \| 'md' \| 'lg' \| 'xl' | 'md' | Modal width |
-| showCloseButton | boolean | true | Show close button in header |
-| closeOnOverlayClick | boolean | true | Close when clicking overlay |
-| footer | ReactNode | optional | Footer content |
+| Prop                | Type                         | Default  | Description                 |
+| ------------------- | ---------------------------- | -------- | --------------------------- |
+| isOpen              | boolean                      | required | Controls modal visibility   |
+| onClose             | () => void                   | required | Callback when modal closes  |
+| title               | string                       | optional | Modal title                 |
+| children            | ReactNode                    | required | Modal content               |
+| size                | 'sm' \| 'md' \| 'lg' \| 'xl' | 'md'     | Modal width                 |
+| showCloseButton     | boolean                      | true     | Show close button in header |
+| closeOnOverlayClick | boolean                      | true     | Close when clicking overlay |
+| footer              | ReactNode                    | optional | Footer content              |
 
 ---
 
@@ -51,6 +52,7 @@ import { Modal } from './components/Modal'
 A slide-out drawer component that can appear from any side of the screen.
 
 ### Features
+
 - Four positions: left, right, top, bottom
 - Multiple sizes: sm, md, lg
 - Close on overlay click (configurable)
@@ -63,7 +65,7 @@ A slide-out drawer component that can appear from any side of the screen.
 ### Usage
 
 ```tsx
-import { Drawer } from './components/Drawer'
+import { Drawer } from './components/Drawer';
 
 <Drawer
   isOpen={isOpen}
@@ -76,22 +78,22 @@ import { Drawer } from './components/Drawer'
   footer={<div>Footer content</div>}
 >
   <p>Drawer content goes here</p>
-</Drawer>
+</Drawer>;
 ```
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| isOpen | boolean | required | Controls drawer visibility |
-| onClose | () => void | required | Callback when drawer closes |
-| title | string | optional | Drawer title |
-| children | ReactNode | required | Drawer content |
-| position | 'left' \| 'right' \| 'top' \| 'bottom' | 'right' | Drawer position |
-| size | 'sm' \| 'md' \| 'lg' | 'md' | Drawer size |
-| showCloseButton | boolean | true | Show close button in header |
-| closeOnOverlayClick | boolean | true | Close when clicking overlay |
-| footer | ReactNode | optional | Footer content |
+| Prop                | Type                                   | Default  | Description                 |
+| ------------------- | -------------------------------------- | -------- | --------------------------- |
+| isOpen              | boolean                                | required | Controls drawer visibility  |
+| onClose             | () => void                             | required | Callback when drawer closes |
+| title               | string                                 | optional | Drawer title                |
+| children            | ReactNode                              | required | Drawer content              |
+| position            | 'left' \| 'right' \| 'top' \| 'bottom' | 'right'  | Drawer position             |
+| size                | 'sm' \| 'md' \| 'lg'                   | 'md'     | Drawer size                 |
+| showCloseButton     | boolean                                | true     | Show close button in header |
+| closeOnOverlayClick | boolean                                | true     | Close when clicking overlay |
+| footer              | ReactNode                              | optional | Footer content              |
 
 ---
 
@@ -100,6 +102,7 @@ import { Drawer } from './components/Drawer'
 A dropdown menu component with support for icons, dividers, and disabled items.
 
 ### Features
+
 - Custom trigger element
 - **Auto-positioning**: Automatically adjusts position based on viewport space
 - Four fixed positions: bottom-left, bottom-right, top-left, top-right
@@ -133,24 +136,24 @@ const items: DropdownItem[] = [
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| trigger | ReactNode | required | Element that triggers dropdown |
-| items | DropdownItem[] | required | Array of dropdown items |
-| onSelect | (value: string) => void | required | Callback when item selected |
-| position | 'auto' \| 'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right' | 'auto' | Dropdown position. 'auto' intelligently positions based on viewport space |
-| className | string | '' | Additional CSS classes |
-| disabled | boolean | false | Disable dropdown |
+| Prop      | Type                                                                   | Default  | Description                                                               |
+| --------- | ---------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------- |
+| trigger   | ReactNode                                                              | required | Element that triggers dropdown                                            |
+| items     | DropdownItem[]                                                         | required | Array of dropdown items                                                   |
+| onSelect  | (value: string) => void                                                | required | Callback when item selected                                               |
+| position  | 'auto' \| 'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right' | 'auto'   | Dropdown position. 'auto' intelligently positions based on viewport space |
+| className | string                                                                 | ''       | Additional CSS classes                                                    |
+| disabled  | boolean                                                                | false    | Disable dropdown                                                          |
 
 ### DropdownItem Interface
 
-| Property | Type | Description |
-|----------|------|-------------|
-| label | string | Item label text |
-| value | string | Item value |
-| icon | ReactNode | Optional icon |
-| disabled | boolean | Disable this item |
-| divider | boolean | Render as divider |
+| Property | Type      | Description       |
+| -------- | --------- | ----------------- |
+| label    | string    | Item label text   |
+| value    | string    | Item value        |
+| icon     | ReactNode | Optional icon     |
+| disabled | boolean   | Disable this item |
+| divider  | boolean   | Render as divider |
 
 ---
 
@@ -171,4 +174,3 @@ All components use Tailwind CSS for styling and follow a consistent design syste
 - Consistent spacing and sizing
 - Smooth transitions and animations
 - Focus states for accessibility
-

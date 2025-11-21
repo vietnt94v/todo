@@ -83,8 +83,8 @@ Mỗi thư mục component có `index.ts` riêng để export component và type
 
 ```typescript
 // components/Button/index.ts
-export { Button } from './Button'
-export type { ButtonProps } from './Button'
+export { Button } from './Button';
+export type { ButtonProps } from './Button';
 ```
 
 Central export in `components/index.ts`:
@@ -93,11 +93,11 @@ Export tập trung trong `components/index.ts`:
 
 ```typescript
 // components/index.ts
-export { Button } from './Button'
-export type { ButtonProps } from './Button'
+export { Button } from './Button';
+export type { ButtonProps } from './Button';
 
-export { Modal } from './Modal'
-export type { ModalProps } from './Modal'
+export { Modal } from './Modal';
+export type { ModalProps } from './Modal';
 // ... etc
 ```
 
@@ -109,8 +109,8 @@ Tất cả pages được export từ `pages/index.ts`:
 
 ```typescript
 // pages/index.ts
-export { Home } from './Home'
-export { ButtonDemo } from './ButtonDemo'
+export { Home } from './Home';
+export { ButtonDemo } from './ButtonDemo';
 // ... etc
 ```
 
@@ -140,20 +140,20 @@ export const routes: RouteObject[] = [
 
 ```typescript
 // ✅ Good - Import from components index
-import { Button, Modal, Dropdown } from './components'
+import { Button, Modal, Dropdown } from './components';
 
 // ❌ Bad - Direct import from component file
-import { Button } from './components/Button/Button'
+import { Button } from './components/Button/Button';
 ```
 
 ### Importing Pages / Import pages
 
 ```typescript
 // ✅ Good - Import from pages index
-import { Home, ButtonDemo } from './pages'
+import { Home, ButtonDemo } from './pages';
 
 // ❌ Bad - Direct import
-import { Home } from './pages/Home'
+import { Home } from './pages/Home';
 ```
 
 ### Using Routes / Sử dụng routes
@@ -181,12 +181,14 @@ function App() {
 ## Benefits / Lợi ích
 
 ### 1. Clean Imports / Import sạch sẽ
+
 - Single source of truth for exports
 - Easy to refactor and maintain
 - Nguồn duy nhất cho exports
 - Dễ refactor và maintain
 
 ### 2. Separation of Concerns / Tách biệt trách nhiệm
+
 - Components: Reusable UI elements
 - Pages: Demo/application pages
 - Routes: Navigation configuration
@@ -195,6 +197,7 @@ function App() {
 - Routes: Cấu hình điều hướng
 
 ### 3. Scalability / Khả năng mở rộng
+
 - Easy to add new components
 - Easy to add new routes
 - Clear structure for team collaboration
@@ -203,6 +206,7 @@ function App() {
 - Cấu trúc rõ ràng cho làm việc nhóm
 
 ### 4. Type Safety / An toàn kiểu
+
 - All types exported properly
 - TypeScript can track imports
 - Tất cả types được export đúng cách
@@ -228,38 +232,38 @@ export interface NewComponentProps {
 
 export const NewComponent: React.FC<NewComponentProps> = (props) => {
   // implementation
-}
+};
 ```
 
 ### Step 3: Create index.ts / Tạo index.ts
 
 ```typescript
 // src/components/NewComponent/index.ts
-export { NewComponent } from './NewComponent'
-export type { NewComponentProps } from './NewComponent'
+export { NewComponent } from './NewComponent';
+export type { NewComponentProps } from './NewComponent';
 ```
 
 ### Step 4: Add to components index / Thêm vào components index
 
 ```typescript
 // src/components/index.ts
-export { NewComponent } from './NewComponent'
-export type { NewComponentProps } from './NewComponent'
+export { NewComponent } from './NewComponent';
+export type { NewComponentProps } from './NewComponent';
 ```
 
 ### Step 5: Create test file / Tạo file test
 
 ```typescript
 // src/components/NewComponent/NewComponent.test.tsx
-import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
-import { NewComponent } from './NewComponent'
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { NewComponent } from './NewComponent';
 
 describe('NewComponent', () => {
   it('renders correctly', () => {
     // test implementation
-  })
-})
+  });
+});
 ```
 
 ---
@@ -279,7 +283,7 @@ export const NewPage: React.FC = () => {
 
 ```typescript
 // src/pages/index.ts
-export { NewPage } from './NewPage'
+export { NewPage } from './NewPage';
 ```
 
 ### Step 3: Add route / Thêm route
@@ -336,7 +340,7 @@ File `src/index.ts` chính export tất cả components để sử dụng như n
 
 ```typescript
 // src/index.ts
-export * from './components'
+export * from './components';
 ```
 
 This allows consumers to import like:
@@ -344,7 +348,7 @@ This allows consumers to import like:
 Điều này cho phép người dùng import như:
 
 ```typescript
-import { Button, Modal, Dropdown } from 'ui-components'
+import { Button, Modal, Dropdown } from 'ui-components';
 ```
 
 ---
@@ -373,9 +377,8 @@ Khi refactor hoặc di chuyển components:
 4. Run tests to ensure nothing breaks
 5. Check for unused imports
 
-1. Cập nhật index.ts của component
-2. Cập nhật components/index.ts
-3. Cập nhật imports trong pages
-4. Chạy tests để đảm bảo không lỗi
-5. Kiểm tra imports không dùng
-
+6. Cập nhật index.ts của component
+7. Cập nhật components/index.ts
+8. Cập nhật imports trong pages
+9. Chạy tests để đảm bảo không lỗi
+10. Kiểm tra imports không dùng
