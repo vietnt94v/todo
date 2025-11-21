@@ -1,9 +1,0 @@
-Summary:
-- build microfe system
- + ui-components: independence repo to build component: button, input, toast, ... etc
- + mfe: shell app
- + other remote app: will implement later
-- use react typescript, react-redux, tailwindcss, react router doom, axios
-
-each repo [mfe, ui-components, ums] will have plan.txt to detail plan
-but build ui-components first then -> mfe

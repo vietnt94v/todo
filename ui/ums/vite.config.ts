@@ -10,9 +10,10 @@ export default defineConfig({
       },
     }),
     federation({
-      name: 'mfe-shell',
-      remotes: {
-        ums: 'http://localhost:5174/assets/remoteEntry.js',
+      name: 'ums',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './App': './src/App.tsx',
       },
       shared: {
         react: {
@@ -30,7 +31,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: 5173,
+    port: 5174,
     cors: true,
   },
   build: {
