@@ -19,4 +19,15 @@
     padding: 0.5rem 1rem;
     border-radius: 0.2rem;
   }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  table tr,
+  table th,
+  table td {
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 1rem;
+  }
 }
