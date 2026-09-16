@@ -1,98 +1,196 @@
+import { useState } from 'react';
 import Badge from '../../components/ui/Badge';
 
-type Inventory = {
+type InventoryItem = {
   id: string;
   sku: string;
   quantity: number;
   status: 'AVAILABLE' | 'HOLD' | 'DAMAGED';
 };
 
-type InventoryList = {
-  inventories: Inventory[];
-  onSelectInventory: (inventory: Inventory) => void;
+type SimulationMode = 'success' | 'empty' | 'error';
+
+type InventoryState =
+  | { status: 'idle'; mode: SimulationMode }
+  | { status: 'loading'; mode: SimulationMode }
+  | { status: 'success'; mode: SimulationMode; data: InventoryItem[] }
+  | { status: 'error'; mode: SimulationMode; message: string };
+
+type SimulationOption = {
+  value: SimulationMode;
+  label: string;
 };
 
-const inventoriesFactory = (count: number): InventoryList => {
-  const statuses: Inventory['status'][] = ['AVAILABLE', 'HOLD', 'DAMAGED'];
-  const generatedInventories: Inventory[] = [];
+const simulationOptions: SimulationOption[] = [
+  { value: 'success', label: 'Success' },
+  { value: 'empty', label: 'Empty' },
+  { value: 'error', label: 'Error' },
+];
 
-  for (let i = 1; i <= count; i++) {
-    const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-    generatedInventories.push({
-      id: i.toString(),
-      sku: `SKU-${i.toString().padStart(3, '0')}`,
+const inventoryStatuses: InventoryItem['status'][] = [
+  'AVAILABLE',
+  'HOLD',
+  'DAMAGED',
+];
+
+const badgeStatusByInventoryStatus: Record<
+  InventoryItem['status'],
+  'success' | 'warning' | 'error'
+> = {
+  AVAILABLE: 'success',
+  HOLD: 'warning',
+  DAMAGED: 'error',
+};
+
+const isSimulationMode = (value: string): value is SimulationMode =>
+  value === 'success' || value === 'empty' || value === 'error';
+
+const createInventories = (count: number): InventoryItem[] =>
+  Array.from({ length: count }, (_, index) => {
+    const number = index + 1;
+
+    return {
+      id: number.toString(),
+      sku: `SKU-${number.toString().padStart(3, '0')}`,
       quantity: Math.floor(Math.random() * 200),
-      status: randomStatus,
-    });
+      status:
+        inventoryStatuses[
+          Math.floor(Math.random() * inventoryStatuses.length)
+        ] ?? 'AVAILABLE',
+    };
+  });
+
+const fetchInventories = async (
+  mode: SimulationMode,
+): Promise<InventoryItem[]> => {
+  await new Promise<void>((resolve) => setTimeout(resolve, 800));
+
+  if (mode === 'error') {
+    throw new Error('Unable to load inventory');
   }
 
-  return {
-    inventories: generatedInventories,
-    onSelectInventory: () => {},
-  };
-};
-
-const InventoryList = ({ inventories, onSelectInventory }: InventoryList) => {
-  const getStatusColor = (status: Inventory['status']) => {
-    switch (status) {
-      case 'AVAILABLE':
-        return 'success';
-      case 'HOLD':
-        return 'warning';
-      case 'DAMAGED':
-        return 'error';
-      default:
-        return 'info';
-    }
-  };
-
-  return (
-    <div className="max-h-150 overflow-auto">
-      <table className="table-auto w-full">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>SKU</th>
-            <th>Quantity</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {inventories.map((inventory) => (
-            <tr key={inventory.id}>
-              <td>{inventory.id}</td>
-              <td>{inventory.sku}</td>
-              <td>{inventory.quantity}</td>
-              <td>
-                <Badge
-                  text={inventory.status}
-                  status={getStatusColor(inventory.status)}
-                />
-              </td>
-              <td>
-                <button onClick={() => onSelectInventory(inventory)}>
-                  View Details
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  return mode === 'empty' ? [] : createInventories(10);
 };
 
 const Inventory = () => {
-  const handleSelectInventory = (inventory: Inventory) => {
-    console.log('Selected Inventory:', inventory);
+  const [state, setState] = useState<InventoryState>({
+    status: 'idle',
+    mode: 'success',
+  });
+  const isLoading = state.status === 'loading';
+
+  const loadInventories = async () => {
+    if (state.status === 'loading') {
+      return;
+    }
+
+    const mode = state.mode;
+    setState({ status: 'loading', mode });
+
+    try {
+      const data = await fetchInventories(mode);
+      setState({ status: 'success', mode, data });
+    } catch (error: unknown) {
+      setState({
+        status: 'error',
+        mode,
+        message: error instanceof Error ? error.message : 'Unknown error',
+      });
+    }
   };
+
+  const renderContent = () => {
+    if (state.status === 'idle') {
+      return <p>Click Load inventory to view inventory.</p>;
+    }
+
+    if (state.status === 'loading') {
+      return <p role="status">Loading…</p>;
+    }
+
+    if (state.status === 'error') {
+      return (
+        <div>
+          <p role="alert">{state.message}</p>
+          <button type="button" onClick={loadInventories}>
+            Try again
+          </button>
+        </div>
+      );
+    }
+
+    if (state.data.length === 0) {
+      return <p>No inventory available.</p>;
+    }
+
+    return (
+      <div className="max-h-150 overflow-auto">
+        <table className="table-auto w-full">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">SKU</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {state.data.map((inventory) => (
+              <tr key={inventory.id}>
+                <td>{inventory.id}</td>
+                <td>{inventory.sku}</td>
+                <td>{inventory.quantity}</td>
+                <td>
+                  <Badge
+                    text={inventory.status}
+                    status={badgeStatusByInventoryStatus[inventory.status]}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+
   return (
-    <>
-      <InventoryList
-        {...inventoriesFactory(20)}
-        onSelectInventory={handleSelectInventory}
-      />
-    </>
+    <section className="space-y-4">
+      <div className="flex items-end gap-3">
+        <div className="grid gap-1">
+          <label htmlFor="inventory-mode">Simulation mode</label>
+          <select
+            id="inventory-mode"
+            value={state.mode}
+            disabled={isLoading}
+            onChange={(event) => {
+              const mode = event.currentTarget.value;
+
+              if (isSimulationMode(mode)) {
+                setState({ status: 'idle', mode });
+              }
+            }}
+          >
+            {simulationOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <button
+          type="button"
+          disabled={isLoading}
+          className="disabled:cursor-not-allowed disabled:opacity-50"
+          onClick={loadInventories}
+        >
+          Load inventory
+        </button>
+      </div>
+
+      {renderContent()}
+    </section>
   );
 };
 
