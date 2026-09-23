@@ -1,0 +1,4 @@
+# Local credentials and machine-specific overrides
+.env
+.env.*
+!.env.example

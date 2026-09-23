@@ -14,17 +14,28 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/todos", () =>
+var summaries = new[]
 {
-    return new[]
-    {
-        new Todo(1, "Viet", false),
-        new Todo(2, "Learn .NET", true),
-        new Todo(3, "Build Todo API", false)
-    };
+    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+};
+
+app.MapGet("/weatherforecast", () =>
+{
+    var forecast =  Enumerable.Range(1, 5).Select(index =>
+        new WeatherForecast
+        (
+            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            Random.Shared.Next(-20, 55),
+            summaries[Random.Shared.Next(summaries.Length)]
+        ))
+        .ToArray();
+    return forecast;
 })
-.WithName("GetTodos");
+.WithName("GetWeatherForecast");
 
 app.Run();
 
-record Todo(int Id, string Name, bool Completed);
+record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+{
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}
