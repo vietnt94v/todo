@@ -1,0 +1,6 @@
+@todo_api_dotnet_controller_HostAddress = http://localhost:5219
+
+GET {{todo_api_dotnet_controller_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

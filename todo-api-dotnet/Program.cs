@@ -49,6 +49,7 @@ static async Task<IResult> CreateTodo(TodoItemDTO todoItemDTO, TodoDb db)
         Name = todoItemDTO.Name,
         IsComplete = todoItemDTO.IsComplete
     };
+
     db.Todos.Add(todoItem);
     await db.SaveChangesAsync();
 
